@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import Jimp from 'jimp';
 
+//Set folders
 const sourceFolder = './target';
 const destinationFolder = './destination';
 
@@ -19,11 +20,10 @@ fs.readdir(sourceFolder, (err, files) => {
                 // Load the image using Jimp
                 const image = await Jimp.read(`${sourceFolder}/${file}`);
 
-                // Crop the image
-                // image.crop(0, 0, 200, 200); // Adjust the crop dimensions as per your requirements
+                // Resize the image
                 image.resize(100, 100)
 
-                // Save the cropped image to the destination folder
+                // Save the resized image to the destination folder
                 await image.writeAsync(`${destinationFolder}/${file}`);
 
                 console.log(`Image ${file} cropped and saved successfully!`);
